@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .colors{
+            display: flex;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 100px;
+            width: 100px;
+            color: black;
+            background-color: black;
+            cursor: crosshair;
+            padding: 10px;
+            
+        }
+        button:hover{
+            background-color: brown;
+            text-shadow: gold;
+        }
+    </style>
+    <div class="container">
+        <button onclick="change()
+            
+        
+        ">click here</button>
+        <p class="colors"></p>
+    </div>
+    
+    <script >
+        function change(){
+            
+            let col=['red','green','blue'];
+            for (let i=0;i<3;i++){col[i]=Math.floor(Math.random()*256);}
+            let cols=`rgb(${col[0]},${col[1]},${col[2]})`
+            document.body.style.backgroundColor=cols;
+            document.querySelector("button").style.backgroundColor=cols;
+            document.querySelector(".colors").innerHTML="Changed Color is"+cols;
+            localStorage.setItem("rgb",cols);
+        }
+        window.onload= function(){
+            let saved=localStorage.getItem("rgb")
+            if(saved){
+                document.body.style.backgroundColor=saved;
+                document.querySelector("button").style.backgroundColor=saved;
+                document.querySelector(".colors").innerHTML="Saved Color is:"+saved;
+                
+            }
+        }
+            
+    </script>
+</body>
+</html>
